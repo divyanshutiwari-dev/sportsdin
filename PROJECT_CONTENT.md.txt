@@ -377,6 +377,9 @@ No unnecessary animations.
 
 ---
 
+
+ some part of the code wqas vibe coded !!!  
+
 # CSS
 
 Separate CSS file.
@@ -540,19 +543,11 @@ Future improvements like better security, scalability, cloud deployment, APIs, o
 # IMPORTANT INSTRUCTION FOR ANY AI
 
 Read this entire document before generating code.
-
-Do not restart the project.
-
+Do not restart the project.c                                                                                                                
 Continue from the current project status.
-
 Maintain coding consistency.
-
 Maintain naming consistency.
-
 Maintain folder structure.
-
 Maintain teaching style.
-
 Always continue from the latest project phase.
-
 Never skip phases.
