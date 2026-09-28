@@ -1,0 +1,15 @@
+# Sportsdin - Project Dependencies
+# Required Python packages for the Flask application
+
+# Web framework
+Flask==3.0.0
+
+# SQLAlchemy ORM for database operations
+Flask-SQLAlchemy==3.1.1
+
+# Login/session management
+Flask-Login==0.6.3
+
+# Werkzeug for WSGI utilities (included with Flask)
+# python-dotenv for environment variables (optional)
+# Passlib for password hashing (add later if needed)

@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-4">
+
+    <!-- Profile header card -->
+    <div class="sd-card mb-4">
+        <div class="sd-profile-cover"></div>
+        <div class="px-4 pb-4">
+            <div class="d-flex align-items-end gap-3" style="margin-top: -45px;">
+                {% if current_user.athlete_profile and current_user.athlete_profile.profile_image %}
+                    <img src="{{ url_for('static', filename='uploads/' ~ current_user.athlete_profile.profile_image) }}"
+                         class="sd-avatar" alt="Profile">
+                {% else %}
+                    <div class="sd-avatar-placeholder">{{ current_user.name[0]|upper }}</div>
+                {% endif %}
+                <div class="pb-2">
+                    <h4 class="mb-0 fw-bold">{{ current_user.name }}</h4>
+                    <span class="sd-badge-soft"><i class="bi bi-person-badge me-1"></i>{{ current_user.role|capitalize }}</span>
+                </div>
+            </div>
+
+            <p class="text-muted-2 mt-3 mb-0">
+                {% if current_user.athlete_profile %}
+                    {% if current_user.athlete_profile.sport %}
+                        <i class="bi bi-trophy me-1"></i>{{ current_user.athlete_profile.sport }}
+                        {% if current_user.athlete_profile.location %}
+                            &nbsp;·&nbsp;<i class="bi bi-geo-alt me-1"></i>{{ current_user.athlete_profile.location }}
+                        {% endif %}
+                    {% else %}
+                        Complete your profile so coaches can find you.
+                    {% endif %}
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+    <!-- Quick action cards -->
+    <h5 class="section-title mb-3">Quick Actions</h5>
+    <div class="row g-4">
+
+        <div class="col-md-6 col-lg-3">
+            <a href="{{ url_for('profile') }}" class="text-decoration-none">
+                <div class="sd-card p-4 h-100 text-center">
+                    <div class="icon-circle mx-auto mb-3"><i class="bi bi-person-gear"></i></div>
+                    <h6 class="fw-bold text-dark">Edit Profile</h6>
+                    <p class="text-muted-2 small mb-0">Update bio, sport, photo</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <a href="{{ url_for('add_achievement') }}" class="text-decoration-none">
+                <div class="sd-card p-4 h-100 text-center">
+                    <div class="icon-circle mx-auto mb-3"><i class="bi bi-plus-circle"></i></div>
+                    <h6 class="fw-bold text-dark">Add Achievement</h6>
+                    <p class="text-muted-2 small mb-0">Medals & tournament wins</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <a href="{{ url_for('upload_certificate') }}" class="text-decoration-none">
+                <div class="sd-card p-4 h-100 text-center">
+                    <div class="icon-circle mx-auto mb-3"><i class="bi bi-file-earmark-arrow-up"></i></div>
+                    <h6 class="fw-bold text-dark">Upload Certificate</h6>
+                    <p class="text-muted-2 small mb-0">Proof of your achievements</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <a href="{{ url_for('add_video') }}" class="text-decoration-none">
+                <div class="sd-card p-4 h-100 text-center">
+                    <div class="icon-circle mx-auto mb-3"><i class="bi bi-youtube"></i></div>
+                    <h6 class="fw-bold text-dark">Add Match Video</h6>
+                    <p class="text-muted-2 small mb-0">Share your highlights</p>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Recent activity -->
+    <h5 class="section-title mt-5 mb-3">Recent Achievements</h5>
+    <div class="sd-card p-4">
+        {% if current_user.athlete_profile and current_user.athlete_profile.achievements %}
+            <ul class="list-unstyled mb-0">
+                {% for achievement in current_user.athlete_profile.achievements[:4] %}
+                    <li class="d-flex align-items-center py-2 border-bottom {% if loop.last %}border-bottom-0{% endif %}">
+                        <i class="bi bi-medal-fill text-primary fs-4 me-3"></i>
+                        <div>
+                            <strong>{{ achievement.title }}</strong><br>
+                            <small class="text-muted-2">{{ achievement.date or 'Date not set' }}</small>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted-2 mb-0">
+                <i class="bi bi-info-circle me-2"></i>No achievements yet.
+                <a href="{{ url_for('add_achievement') }}">Add your first one</a>.
+            </p>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

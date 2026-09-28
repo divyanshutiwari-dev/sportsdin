@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ===== Page Header ===== -->
+<section class="sd-hero py-5">
+    <div class="container text-center position-relative" style="z-index: 2;">
+        <h1 class="mb-2" style="font-size: 2.6rem;">About Sportsdin</h1>
+        <p class="mb-0">Connecting raw talent with the right eyes.</p>
+    </div>
+</section>
+
+<section class="container my-5">
+    <div class="row g-4">
+        <!-- Mission -->
+        <div class="col-lg-6">
+            <div class="sd-card p-4 h-100">
+                <div class="icon-circle mb-3"><i class="bi bi-bullseye"></i></div>
+                <h4 class="section-title">Our Mission</h4>
+                <p class="text-muted-2">
+                    Thousands of talented athletes go unnoticed every year — not because they lack skill,
+                    but because nobody is watching. Sportsdin changes that. We give every athlete a
+                    professional profile where achievements, certificates and match videos live in one place,
+                    ready for coaches and selectors to discover.
+                </p>
+            </div>
+        </div>
+
+        <!-- Who uses it -->
+        <div class="col-lg-6">
+            <div class="sd-card p-4 h-100">
+                <div class="icon-circle mb-3"><i class="bi bi-people"></i></div>
+                <h4 class="section-title">Who Uses Sportsdin</h4>
+                <ul class="list-unstyled text-muted-2 mb-0 mt-3">
+                    <li class="d-flex align-items-start mb-3">
+                        <i class="bi bi-person-check text-primary me-3 fs-4"></i>
+                        <div><strong>Athletes</strong> — build your sports identity and get noticed.</div>
+                    </li>
+                    <li class="d-flex align-items-start mb-3">
+                        <i class="bi bi-clipboard-data text-primary me-3 fs-4"></i>
+                        <div><strong>Coaches</strong> — search and filter talent by sport and location.</div>
+                    </li>
+                    <li class="d-flex align-items-start">
+                        <i class="bi bi-building text-primary me-3 fs-4"></i>
+                        <div><strong>Recruiters</strong> — verify achievements with real certificates.</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- How it works -->
+    <h4 class="section-title text-center mt-5 mb-4">How It Works</h4>
+    <div class="row g-4 text-center">
+        <div class="col-md-4">
+            <div class="sd-card p-4 h-100">
+                <span class="sd-badge-soft">Step 1</span>
+                <h5 class="mt-3">Register Free</h5>
+                <p class="text-muted-2 small mb-0">Sign up as an athlete or coach in under 2 minutes.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="sd-card p-4 h-100">
+                <span class="sd-badge-soft">Step 2</span>
+                <h5 class="mt-3">Build Your Profile</h5>
+                <p class="text-muted-2 small mb-0">Add photo, bio, achievements, certificates and videos.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="sd-card p-4 h-100">
+                <span class="sd-badge-soft">Step 3</span>
+                <h5 class="mt-3">Get Discovered</h5>
+                <p class="text-muted-2 small mb-0">Coaches search, filter and find you directly.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,313 @@
+/* ============================================
+   Sportsdin - style.css
+   Sports theme | Colors: Blue, White, Black, Grey
+   ============================================ */
+
+/* ---- Google Font ---- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --sd-blue: #0a66c2;
+    --sd-dark: #0b1f3a;
+    --sd-navy: #12305e;
+    --sd-grey: #6b7280;
+    --sd-light: #f4f6f8;
+    --sd-border: #e3e7ec;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--sd-light);
+    color: #1c1e21;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* ============ NAVBAR ============ */
+
+.sd-navbar {
+    background: #ffffff;
+    border-bottom: 1px solid var(--sd-border);
+    box-shadow: 0 2px 10px rgba(11, 31, 58, 0.06);
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+}
+
+.sd-brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+    color: var(--sd-blue) !important;
+}
+
+.sd-brand span {
+    color: var(--sd-dark);
+}
+
+.sd-nav-link {
+    color: var(--sd-grey) !important;
+    font-weight: 500;
+    margin-left: 0.75rem;
+    transition: color 0.2s ease;
+}
+
+.sd-nav-link:hover,
+.sd-nav-link.active {
+    color: var(--sd-blue) !important;
+}
+
+/* ============ HERO SECTION ============ */
+
+.sd-hero {
+    background: linear-gradient(135deg, var(--sd-dark) 0%, var(--sd-navy) 55%, var(--sd-blue) 100%);
+    color: #fff;
+    padding: 6rem 0 7rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* soft glowing circles in the hero background */
+.sd-hero::before,
+.sd-hero::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sd-hero::before {
+    width: 420px;
+    height: 420px;
+    top: -140px;
+    right: -100px;
+}
+
+.sd-hero::after {
+    width: 300px;
+    height: 300px;
+    bottom: -120px;
+    left: -80px;
+}
+
+.sd-hero h1 {
+    font-weight: 800;
+    font-size: 3.2rem;
+    line-height: 1.15;
+}
+
+.sd-hero h1 .text-highlight {
+    color: #6db3f2;
+}
+
+.sd-hero p {
+    color: #d7e3f4;
+    font-size: 1.15rem;
+    max-width: 560px;
+}
+
+/* ============ BUTTONS ============ */
+
+.btn-sd {
+    background-color: var(--sd-blue);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 0.65rem 1.9rem;
+    border: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 14px rgba(10, 102, 194, 0.35);
+}
+
+.btn-sd:hover {
+    background-color: #084d94;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(10, 102, 194, 0.45);
+}
+
+.btn-sd-light {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-weight: 600;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    border-radius: 50px;
+    padding: 0.65rem 1.9rem;
+    backdrop-filter: blur(4px);
+    transition: all 0.25s ease;
+}
+
+.btn-sd-light:hover {
+    background: #ffffff;
+    color: var(--sd-dark);
+}
+
+/* ============ CARDS ============ */
+
+.sd-card {
+    background: #fff;
+    border: 1px solid var(--sd-border);
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(11, 31, 58, 0.05);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.sd-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 26px rgba(11, 31, 58, 0.12);
+}
+
+.sd-card .icon-circle {
+    width: 62px;
+    height: 62px;
+    border-radius: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    background: rgba(10, 102, 194, 0.09);
+    color: var(--sd-blue);
+}
+
+/* ============ STATS BAND ============ */
+
+.sd-stats {
+    background: var(--sd-dark);
+    color: #fff;
+    padding: 3.2rem 0;
+}
+
+.sd-stats h2 {
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: #6db3f2;
+}
+
+/* ============ AUTH PAGES ============ */
+
+.auth-wrapper {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: center;
+    padding: 2.5rem 0;
+}
+
+.auth-card {
+    background: #fff;
+    border-radius: 18px;
+    border: 1px solid var(--sd-border);
+    box-shadow: 0 18px 44px rgba(11, 31, 58, 0.12);
+    overflow: hidden;
+    max-width: 900px;
+    margin: auto;
+    width: 100%;
+}
+
+.auth-side {
+    background: linear-gradient(160deg, var(--sd-dark), var(--sd-blue));
+    color: #fff;
+    padding: 3rem 2.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auth-side h2 {
+    font-weight: 700;
+}
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+    padding: 0.65rem 0.9rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--sd-blue);
+    box-shadow: 0 0 0 0.2rem rgba(10, 102, 194, 0.15);
+}
+
+/* ============ DASHBOARD / PROFILE ============ */
+
+.sd-profile-cover {
+    background: linear-gradient(135deg, var(--sd-dark), var(--sd-blue));
+    height: 170px;
+    border-radius: 14px 14px 0 0;
+}
+
+.sd-avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 14px rgba(11, 31, 58, 0.25);
+}
+
+.sd-avatar-placeholder {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sd-navy), var(--sd-blue));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.4rem;
+    font-weight: 700;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 14px rgba(11, 31, 58, 0.25);
+}
+
+.sd-badge-soft {
+    background: rgba(10, 102, 194, 0.1);
+    color: var(--sd-blue);
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 0.3em 0.85em;
+    font-size: 0.82rem;
+}
+
+/* ============ FOOTER ============ */
+
+.sd-footer {
+    background: var(--sd-dark);
+    color: #b9c4d4;
+    padding: 2.4rem 0 1.4rem 0;
+    margin-top: 4rem;
+}
+
+.sd-footer h6 {
+    color: #fff;
+    font-weight: 600;
+}
+
+.sd-footer a {
+    color: #b9c4d4;
+    text-decoration: none;
+    font-size: 0.92rem;
+}
+
+.sd-footer a:hover {
+    color: #6db3f2;
+}
+
+/* ============ MISC ============ */
+
+.section-title {
+    font-weight: 700;
+    color: var(--sd-dark);
+}
+
+.text-muted-2 {
+    color: var(--sd-grey) !important;
+}

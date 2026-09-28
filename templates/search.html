@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-4">
+
+    <!-- Search header -->
+    <div class="sd-card p-4 mb-4">
+        <h4 class="section-title mb-3"><i class="bi bi-search text-primary me-2"></i>Find Athletes</h4>
+        <form method="GET" action="{{ url_for('search') }}">
+            <div class="row g-2">
+                <div class="col-md-5">
+                    <input type="text" class="form-control" name="query"
+                           placeholder="Search by athlete name..." value="{{ query }}">
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" name="sport">
+                        <option value="">All Sports</option>
+                        {% for sport in sport_list %}
+                            <option value="{{ sport }}" {% if sport_filter == sport %}selected{% endif %}>{{ sport }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" name="location"
+                           placeholder="City / Location" value="{{ location_filter }}">
+                </div>
+                <div class="col-md-1 d-grid">
+                    <button type="submit" class="btn btn-sd">Go</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Results -->
+    <h6 class="text-muted-2 mb-3">{{ athletes|length }} result(s) found</h6>
+
+    {% for athlete in athletes %}
+        <a href="#" class="text-decoration-none">
+            <div class="sd-card p-3 mb-3">
+                <div class="d-flex align-items-center gap-3">
+
+                    {% if athlete.profile_image %}
+                        <img src="{{ url_for('static', filename='uploads/' ~ athlete.profile_image) }}"
+                             class="sd-avatar" style="width:64px;height:64px;" alt="">
+                    {% else %}
+                        <div class="sd-avatar-placeholder" style="width:64px;height:64px;font-size:1.4rem;">
+                            {{ athlete.user.name[0]|upper }}
+                        </div>
+                    {% endif %}
+
+                    <div class="me-auto">
+                        <h6 class="fw-bold text-dark mb-0">{{ athlete.user.name }}</h6>
+                        <small class="text-muted-2">
+                            {% if athlete.sport %}<i class="bi bi-trophy me-1"></i>{{ athlete.sport }}{% endif %}
+                            {% if athlete.location %}
+                                &nbsp;·&nbsp;<i class="bi bi-geo-alt me-1"></i>{{ athlete.location }}
+                            {% endif %}
+                        </small>
+                        {% if athlete.bio %}
+                            <p class="text-muted-2 small mb-0 mt-1">{{ athlete.bio[:100] }}{% if athlete.bio|length > 100 %}...{% endif %}</p>
+                        {% endif %}
+                    </div>
+
+                    <span class="sd-badge-soft d-none d-md-inline">
+                        {{ athlete.achievements|length }} achievement(s)
+                    </span>
+                </div>
+            </div>
+        </a>
+    {% else %}
+        <div class="sd-card p-5 text-center">
+            <i class="bi bi-person-x text-muted" style="font-size: 3rem;"></i>
+            <p class="text-muted-2 mb-0 mt-2">No athletes found matching your filters.</p>
+        </div>
+    {% endfor %}
+
+</div>
+{% endblock %}

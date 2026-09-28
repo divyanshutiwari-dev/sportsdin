@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-5">
+
+                <div class="sd-card p-4 p-md-5">
+                    <div class="text-center mb-4">
+                        <div class="icon-circle mx-auto mb-3"><i class="bi bi-medal"></i></div>
+                        <h4 class="section-title mb-1">Add Achievement</h4>
+                        <p class="text-muted-2 small mb-0">Medals, tournaments, records — everything counts.</p>
+                    </div>
+
+                    <form method="POST" action="{{ url_for('add_achievement') }}">
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold">Title</label>
+                            <input type="text" class="form-control" name="title"
+                                   placeholder="e.g., State Championship - Gold Medal" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold">Date</label>
+                            <input type="text" class="form-control" name="date"
+                                   placeholder="e.g., June 2026">
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label small fw-semibold">Description</label>
+                            <textarea class="form-control" name="description" rows="3"
+                                      placeholder="Short details about this achievement..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-sd w-100">Add Achievement</button>
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <a href="{{ url_for('profile') }}" class="small text-muted-2">
+                            <i class="bi bi-arrow-left me-1"></i>Back to profile
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

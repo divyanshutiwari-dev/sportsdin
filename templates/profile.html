@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-4">
+
+    <!-- ===== Cover + Avatar Card ===== -->
+    <div class="sd-card mb-4">
+        <div class="sd-profile-cover"></div>
+        <div class="px-4 pb-4">
+            <div class="d-flex align-items-end gap-3 flex-wrap" style="margin-top: -45px;">
+
+                {% if athlete.profile_image %}
+                    <img src="{{ url_for('static', filename='uploads/' ~ athlete.profile_image) }}"
+                         class="sd-avatar" alt="Profile photo">
+                {% else %}
+                    <div class="sd-avatar-placeholder">{{ current_user.name[0]|upper }}</div>
+                {% endif %}
+
+                <div class="pb-2 me-auto">
+                    <h4 class="mb-1 fw-bold">{{ current_user.name }}</h4>
+                    <p class="text-muted-2 mb-0">
+                        {% if athlete.sport %}{{ athlete.sport }}{% else %}Sport not set{% endif %}
+                        {% if athlete.location %}&nbsp;·&nbsp;<i class="bi bi-geo-alt"></i> {{ athlete.location }}{% endif %}
+                    </p>
+                </div>
+
+                <a href="#edit-profile" class="btn btn-sd btn-sm mb-3">
+                    <i class="bi bi-pencil-square me-1"></i>Edit Profile
+                </a>
+            </div>
+
+            {% if athlete.bio %}
+                <p class="mt-3 mb-0">{{ athlete.bio }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- ===== Left column: Achievements ===== -->
+        <div class="col-lg-7">
+
+            <!-- Achievements -->
+            <div class="sd-card p-4 mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="section-title mb-0"><i class="bi bi-medal text-primary me-2"></i>Achievements</h5>
+                    <a href="{{ url_for('add_achievement') }}" class="btn btn-sm btn-sd">+ Add</a>
+                </div>
+
+                {% if athlete.achievements %}
+                    <ul class="list-unstyled mb-0">
+                        {% for achievement in athlete.achievements %}
+                            <li class="d-flex justify-content-between align-items-start py-3 border-bottom {% if loop.last %}border-bottom-0{% endif %}">
+                                <div class="d-flex gap-3">
+                                    <i class="bi bi-trophy-fill text-warning fs-4 mt-1"></i>
+                                    <div>
+                                        <strong>{{ achievement.title }}</strong>
+                                        <span class="sd-badge-soft ms-2">{{ achievement.date or 'No date' }}</span>
+                                        {% if achievement.description %}
+                                            <p class="text-muted-2 small mb-0 mt-1">{{ achievement.description }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <a href="{{ url_for('delete_achievement', achievement_id=achievement.id) }}"
+                                   class="text-danger ms-3" title="Delete"
+                                   onclick="return confirm('Delete this achievement?');">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="text-muted-2 mb-0">No achievements yet. Add your first win!</p>
+                {% endif %}
+            </div>
+
+            <!-- Videos -->
+            <div class="sd-card p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="section-title mb-0"><i class="bi bi-play-btn text-primary me-2"></i>Match Videos</h5>
+                    <a href="{{ url_for('add_video') }}" class="btn btn-sm btn-sd">+ Add</a>
+                </div>
+
+                {% if athlete.videos %}
+                    <div class="row g-3">
+                        {% for video in athlete.videos %}
+                            <div class="col-md-6">
+                                <div class="ratio ratio-16x9 rounded overflow-hidden">
+                                    <iframe src="https://www.youtube.com/embed/{{ video.youtube_id }}"
+                                            title="{{ video.title or 'Match video' }}"
+                                            allowfullscreen></iframe>
+                                </div>
+                                {% if video.title %}
+                                    <small class="fw-semibold d-block mt-2">{{ video.title }}</small>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted-2 mb-0">No videos yet. Add a YouTube highlight link!</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- ===== Right column: Certificates + Edit form ===== -->
+        <div class="col-lg-5">
+
+            <!-- Certificates -->
+            <div class="sd-card p-4 mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="section-title mb-0"><i class="bi bi-patch-check text-primary me-2"></i>Certificates</h5>
+                    <a href="{{ url_for('upload_certificate') }}" class="btn btn-sm btn-sd">+ Upload</a>
+                </div>
+
+                {% if athlete.certificates %}
+                    <ul class="list-unstyled mb-0">
+                        {% for certificate in athlete.certificates %}
+                            <li class="d-flex align-items-center justify-content-between py-2 border-bottom {% if loop.last %}border-bottom-0{% endif %}">
+                                <div>
+                                    <strong>{{ certificate.title }}</strong><br>
+                                    <small class="text-muted-2">{{ certificate.issued_date or 'No date' }}</small>
+                                </div>
+                                <a href="{{ url_for('view_certificate', certificate_id=certificate.id) }}"
+                                   target="_blank" class="btn btn-sm btn-outline-primary">
+                                    View <i class="bi bi-eye ms-1"></i>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="text-muted-2 mb-0">No certificates uploaded yet.</p>
+                {% endif %}
+            </div>
+
+            <!-- Edit profile form -->
+            <div class="sd-card p-4" id="edit-profile">
+                <h5 class="section-title mb-3"><i class="bi bi-pencil-square text-primary me-2"></i>Edit Profile</h5>
+
+                <form method="POST" action="{{ url_for('update_profile') }}" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold">Bio</label>
+                        <textarea class="form-control" name="bio" rows="3"
+                                  placeholder="Tell coaches about your game...">{{ athlete.bio or '' }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold">Sport</label>
+                        <input type="text" class="form-control" name="sport"
+                               placeholder="e.g., Football" value="{{ athlete.sport or '' }}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold">Location</label>
+                        <input type="text" class="form-control" name="location"
+                               placeholder="e.g., Mumbai" value="{{ athlete.location or '' }}">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label small fw-semibold">Profile Photo</label>
+                        <input type="file" class="form-control" name="profile_image" accept="image/*">
+                    </div>
+                    <button type="submit" class="btn btn-sd w-100">Save Changes</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

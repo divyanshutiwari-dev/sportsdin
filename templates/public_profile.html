@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}{{ athlete.user.name }} - Sportsdin{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+
+    <!-- ===== Cover + Avatar ===== -->
+    <div class="sd-card mb-4">
+        <div class="sd-profile-cover"></div>
+        <div class="px-4 pb-4">
+            <div class="d-flex align-items-end gap-3 flex-wrap" style="margin-top: -45px;">
+
+                {% if athlete.profile_image %}
+                    <img src="{{ url_for('static', filename='uploads/' ~ athlete.profile_image) }}"
+                         class="sd-avatar" alt="Profile photo">
+                {% else %}
+                    <div class="sd-avatar-placeholder">{{ athlete.user.name[0]|upper }}</div>
+                {% endif %}
+
+                <div class="pb-2 me-auto">
+                    <h4 class="mb-1 fw-bold">
+                        {{ athlete.user.name }}
+                        {% if athlete.is_verified %}
+                            <i class="bi bi-patch-check-fill text-primary ms-1" title="Verified Athlete"></i>
+                        {% endif %}
+                    </h4>
+                    <p class="text-muted-2 mb-0">
+                        {% if athlete.sport %}{{ athlete.sport }}{% else %}Sport not set{% endif %}
+                        {% if athlete.location %}&nbsp;·&nbsp;<i class="bi bi-geo-alt"></i> {{ athlete.location }}{% endif %}
+                        {% if athlete.is_verified %}
+                            &nbsp;·&nbsp;<span class="sd-badge-soft">Verified</span>
+                        {% endif %}
+                    </p>
+                </div>
+
+            </div>
+
+            {% if athlete.bio %}
+                <p class="mt-3 mb-0">{{ athlete.bio }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Achievements -->
+        <div class="col-lg-7">
+            <div class="sd-card p-4 mb-4">
+                <h5 class="section-title mb-3"><i class="bi bi-medal text-primary me-2"></i>Achievements</h5>
+                {% if athlete.achievements %}
+                    <ul class="list-unstyled mb-0">
+                        {% for achievement in athlete.achievements %}
+                            <li class="d-flex gap-3 py-3 border-bottom {% if loop.last %}border-bottom-0{% endif %}">
+                                <i class="bi bi-trophy-fill text-warning fs-4 mt-1"></i>
+                                <div>
+                                    <strong>{{ achievement.title }}</strong>
+                                    <span class="sd-badge-soft ms-2">{{ achievement.date or 'No date' }}</span>
+                                    {% if achievement.description %}
+                                        <p class="text-muted-2 small mb-0 mt-1">{{ achievement.description }}</p>
+                                    {% endif %}
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="text-muted-2 mb-0">No achievements added yet.</p>
+                {% endif %}
+            </div>
+
+            <!-- Videos -->
+            <div class="sd-card p-4">
+                <h5 class="section-title mb-3"><i class="bi bi-play-btn text-primary me-2"></i>Match Videos</h5>
+                {% if athlete.videos %}
+                    <div class="row g-3">
+                        {% for video in athlete.videos %}
+                            <div class="col-md-6">
+                                <div class="ratio ratio-16x9 rounded overflow-hidden">
+                                    <iframe src="https://www.youtube.com/embed/{{ video.youtube_id }}"
+                                            title="{{ video.title or 'Match video' }}"
+                                            allowfullscreen></iframe>
+                                </div>
+                                {% if video.title %}
+                                    <small class="fw-semibold d-block mt-2">{{ video.title }}</small>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted-2 mb-0">No match videos yet.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Certificates + info -->
+        <div class="col-lg-5">
+            <div class="sd-card p-4 mb-4">
+                <h5 class="section-title mb-3"><i class="bi bi-patch-check text-primary me-2"></i>Certificates</h5>
+                {% if athlete.certificates %}
+                    <ul class="list-unstyled mb-0">
+                        {% for certificate in athlete.certificates %}
+                            <li class="d-flex align-items-center justify-content-between py-2 border-bottom {% if loop.last %}border-bottom-0{% endif %}">
+                                <div>
+                                    <strong>{{ certificate.title }}</strong><br>
+                                    <small class="text-muted-2">{{ certificate.issued_date or 'No date' }}</small>
+                                </div>
+                                <a href="{{ url_for('view_certificate', certificate_id=certificate.id) }}"
+                                   target="_blank" class="btn btn-sm btn-outline-primary">
+                                    View <i class="bi bi-eye ms-1"></i>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="text-muted-2 mb-0">No certificates uploaded.</p>
+                {% endif %}
+            </div>
+
+            <a href="{{ url_for('search') }}" class="btn btn-sd-light w-100 text-dark bg-white">
+                <i class="bi bi-arrow-left me-1"></i>Back to search
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

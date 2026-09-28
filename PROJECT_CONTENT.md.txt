@@ -1,0 +1,558 @@
+# PROJECT_CONTEXT.md
+# Sportsdin - Project Constitution (Version 1.0)
+
+---
+
+# PROJECT INFORMATION
+
+Project Name:
+Sportsdin
+
+Project Type:
+College Mini Project
+
+Course:
+Computer Science Engineering
+
+Project Theme:
+LinkedIn for Athletes
+
+Project Goal:
+Build a working web application where athletes can create professional sports profiles, upload achievements, certificates and match videos while coaches and selectors can discover talented athletes.
+
+This is NOT an enterprise project.
+
+This is a beginner-friendly college project that should be realistic, clean and fully working.
+
+---
+
+# MY SKILL LEVEL
+
+Assume I am still learning.
+
+I understand Python basics.
+
+Teach me properly instead of only giving code.
+
+Explain everything in simple English.
+
+Never assume I know advanced concepts.
+
+---
+
+# TECHNOLOGY STACK
+
+Backend
+Python 3
+
+Framework
+Flask
+
+Frontend
+HTML
+CSS
+Bootstrap 5
+
+Database
+SQLite
+
+ORM
+Flask SQLAlchemy
+
+Uploads
+Local uploads folder
+
+IDE
+VS Code
+
+Do NOT use
+
+React
+
+Angular
+
+Vue
+
+Next.js
+
+Django
+
+FastAPI
+
+MongoDB
+
+PostgreSQL
+
+Docker
+
+Redis
+
+Tailwind CSS
+
+unless I specifically request them.
+
+---
+
+# PROJECT OBJECTIVE
+
+Sportsdin is a LinkedIn-style platform exclusively for athletes.
+
+Athletes can
+
+• Register
+
+• Login
+
+• Create professional sports profile
+
+• Upload profile photo
+
+• Add achievements
+
+• Upload certificates
+
+• Add match video links
+
+• Edit profile
+
+Coaches and Recruiters can
+
+• Search athletes
+
+• Filter athletes
+
+• View athlete profiles
+
+Admin (Optional)
+
+• Verify athletes
+
+• Manage users
+
+---
+
+# PROJECT PRINCIPLES
+
+Always keep the project
+
+Simple
+
+Beginner Friendly
+
+Clean
+
+Easy to Explain
+
+Human Written
+
+Do not over-engineer.
+
+---
+
+# CODING RULES
+
+Always follow these rules.
+
+1. Keep functions short.
+
+2. Avoid writing huge files.
+
+3. Avoid advanced Python.
+
+4. Keep variable names meaningful.
+
+5. Explain only important lines.
+
+6. Use comments only where necessary.
+
+7. Keep HTML simple.
+
+8. Keep CSS organized.
+
+9. Never generate 500+ lines at once.
+
+10. Make the code look like it was written by a college student.
+
+---
+
+# VERY IMPORTANT
+
+Never generate the entire project in one response.
+
+Build the project feature by feature.
+
+Finish one feature completely before moving to the next.
+
+---
+
+# DEVELOPMENT PHASES
+
+Phase 0
+
+Project Planning
+
+Folder Structure
+
+Workflow
+
+Database Design
+
+Page Flow
+
+----------------------------------
+
+Phase 1
+
+Project Setup
+
+Flask Installation
+
+Folder Structure
+
+Home Page
+
+Navigation Bar
+
+----------------------------------
+
+Phase 2
+
+Database
+
+Registration
+
+SQLite
+
+----------------------------------
+
+Phase 3
+
+Login
+
+Logout
+
+Dashboard
+
+----------------------------------
+
+Phase 4
+
+Athlete Profile
+
+Edit Profile
+
+Profile Picture
+
+----------------------------------
+
+Phase 5
+
+Achievements
+
+Add Achievement
+
+Display Achievement
+
+Delete Achievement
+
+----------------------------------
+
+Phase 6
+
+Certificates
+
+Upload Certificate
+
+View Certificate
+
+----------------------------------
+
+Phase 7
+
+Match Videos
+
+Add YouTube Link
+
+Display Videos
+
+----------------------------------
+
+Phase 8
+
+Search Athletes
+
+Filter Athletes
+
+Profile View
+
+----------------------------------
+
+Phase 9 (Optional)
+
+Admin Panel
+
+Verification
+
+Delete Users
+
+---
+
+# TEACHING STYLE
+
+Whenever generating code
+
+Always follow this order.
+
+1 Explain what we are building.
+
+2 Explain why it is needed.
+
+3 Tell me which file to open.
+
+4 Generate the complete code.
+
+5 Explain only important lines.
+
+6 Tell me how to run it.
+
+7 Tell me expected output.
+
+8 Stop.
+
+Do not continue automatically.
+
+Wait for my confirmation.
+
+---
+
+# PROJECT STRUCTURE
+
+Sportsdin/
+
+app.py
+
+config.py
+
+models.py
+
+routes.py
+
+requirements.txt
+
+sportsdin.db
+
+uploads/
+
+templates/
+
+static/
+
+Keep the folder structure clean.
+
+Do not create unnecessary files.
+
+---
+
+# DATABASE
+
+Use SQLite only.
+
+Explain every table before creating it.
+
+Keep relationships simple.
+
+Avoid unnecessary columns.
+
+---
+
+# HTML
+
+Use Bootstrap.
+
+Responsive layout.
+
+Simple professional UI.
+
+No unnecessary animations.
+
+---
+
+# CSS
+
+Separate CSS file.
+
+Clean spacing.
+
+Modern sports theme.
+
+Primary colors
+
+Blue
+
+White
+
+Black
+
+Grey
+
+---
+
+# DEBUGGING
+
+Whenever an error occurs
+
+Explain
+
+Why it happened
+
+How to fix it
+
+Which file to edit
+
+Show corrected code only
+
+Do not rewrite the entire project.
+
+---
+
+# PROJECT DOCUMENTATION
+
+Throughout development maintain these files.
+
+PROJECT_CONTEXT.md
+
+PROJECT_PROGRESS.md
+
+DEVELOPMENT_LOG.md
+
+NEXT_PHASE_PROMPT.md
+
+DATABASE_STRUCTURE.md
+
+PROJECT_STRUCTURE.md
+
+CHANGELOG.md
+
+Always update them after every completed phase.
+
+---
+
+# TEAM INFORMATION
+
+This project has four members.
+
+I am the technical lead.
+
+Currently the other three teammates do not have laptops.
+
+They also have no coding experience.
+
+Until they receive laptops
+
+DO NOT assign coding work.
+
+Instead assign only
+
+Documentation
+
+Workflow Review
+
+Feature Discussions
+
+UI Feedback
+
+PPT Preparation
+
+Report Writing
+
+Testing Plans
+
+Flowcharts
+
+References
+
+Requirement Collection
+
+Project Explanation Practice
+
+After they receive laptops
+
+Gradually assign beginner-friendly tasks.
+
+Increase difficulty slowly.
+
+Keep me responsible for backend and technical decisions.
+
+---
+
+# AFTER EVERY PHASE
+
+Always generate
+
+1 Progress Summary
+
+2 Features Completed
+
+3 Files Created
+
+4 Teacher Demo Checklist
+
+5 Viva Questions
+
+6 Viva Answers
+
+7 Team Distribution
+
+8 Next Phase Overview
+
+9 Update PROJECT_PROGRESS.md
+
+10 Update DEVELOPMENT_LOG.md
+
+11 Update NEXT_PHASE_PROMPT.md
+
+---
+
+# CODE STYLE
+
+Never make the project look AI-generated.
+
+Avoid unnecessary complexity.
+
+Avoid professional enterprise architecture.
+
+Keep the project readable.
+
+Keep files reasonably small.
+
+Write code naturally.
+
+---
+
+# FUTURE GOAL
+
+The first objective is to complete the college mini project successfully.
+
+Future improvements like better security, scalability, cloud deployment, APIs, or advanced features should only be discussed when explicitly requested and should not change the current beginner-friendly implementation.
+
+---
+
+# IMPORTANT INSTRUCTION FOR ANY AI
+
+Read this entire document before generating code.
+
+Do not restart the project.
+
+Continue from the current project status.
+
+Maintain coding consistency.
+
+Maintain naming consistency.
+
+Maintain folder structure.
+
+Maintain teaching style.
+
+Always continue from the latest project phase.
+
+Never skip phases.

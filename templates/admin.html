@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-4">
+
+    <!-- Header + stats -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="section-title mb-0"><i class="bi bi-shield-lock text-primary me-2"></i>Admin Panel</h3>
+        <span class="sd-badge-soft">{{ current_user.name }}</span>
+    </div>
+
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+            <div class="sd-card p-3 text-center">
+                <h4 class="fw-bold mb-0">{{ stats.total }}</h4>
+                <small class="text-muted-2">Total Users</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="sd-card p-3 text-center">
+                <h4 class="fw-bold mb-0">{{ stats.athletes }}</h4>
+                <small class="text-muted-2">Athletes</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="sd-card p-3 text-center">
+                <h4 class="fw-bold mb-0">{{ stats.coaches }}</h4>
+                <small class="text-muted-2">Coaches</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="sd-card p-3 text-center">
+                <h4 class="fw-bold mb-0 text-primary">{{ stats.verified }}</h4>
+                <small class="text-muted-2">Verified Athletes</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Users table -->
+    <div class="sd-card p-4">
+        <h5 class="section-title mb-3">All Users</h5>
+
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead>
+                    <tr class="text-muted-2 small">
+                        <th>User</th>
+                        <th>Role</th>
+                        <th>Sport</th>
+                        <th>Status</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>
+                            <strong>{{ user.name }}</strong><br>
+                            <small class="text-muted-2">{{ user.email }}</small>
+                        </td>
+                        <td>
+                            {% if user.role == 'admin' %}
+                                <span class="badge bg-dark">admin</span>
+                            {% elif user.role == 'coach' %}
+                                <span class="sd-badge-soft">coach</span>
+                            {% else %}
+                                <span class="sd-badge-soft">athlete</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ user.athlete_profile.sport or '—' if user.athlete_profile else '—' }}</td>
+                        <td>
+                            {% if user.role == 'athlete' and user.athlete_profile %}
+                                {% if user.athlete_profile.is_verified %}
+                                    <i class="bi bi-patch-check-fill text-primary me-1"></i>Verified
+                                {% else %}
+                                    <span class="text-muted-2">Pending</span>
+                                {% endif %}
+                            {% else %}
+                                —
+                            {% endif %}
+                        </td>
+                        <td class="text-end">
+                            {% if user.role == 'athlete' and user.athlete_profile %}
+                                <a href="{{ url_for('public_profile', athlete_id=user.athlete_profile.id) }}"
+                                   class="btn btn-sm btn-outline-secondary me-1" title="View profile">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a href="{{ url_for('verify_athlete', user_id=user.id) }}"
+                                   class="btn btn-sm {% if user.athlete_profile.is_verified %}btn-outline-warning{% else %}btn-outline-primary{% endif %} me-1"
+                                   title="{% if user.athlete_profile.is_verified %}Remove verification{% else %}Verify athlete{% endif %}">
+                                    <i class="bi bi-{% if user.athlete_profile.is_verified %}x-circle{% else %}patch-check{% endif %}"></i>
+                                </a>
+                            {% endif %}
+                            {% if user.id != current_user.id %}
+                                <a href="{{ url_for('delete_user', user_id=user.id) }}"
+                                   class="btn btn-sm btn-outline-danger"
+                                   onclick="return confirm('Delete {{ user.name }} and ALL their data?');"
+                                   title="Delete user">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
